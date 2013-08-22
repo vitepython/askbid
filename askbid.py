@@ -25,11 +25,11 @@ def main():
     To convert from BTC to USD Press 2
     To Quit press any key
     '''
-    choice = float (raw_input("Enter Choice: "))
-    if choice == 1:
-        usd2btc()
-    if choice == 2:    
-        btc2usd()
+    fcts = {1 : usd2btc, 2 : btc2usd}
+    choice = None
+    while choice not in fcts.keys():
+        choice = int (raw_input("Enter Choice: "))
+        fcts[choice]()
         
 # Function to determine asking price when converting from Bitcoin to USD
 def btc2usd():
@@ -43,7 +43,7 @@ def btc2usd():
     afee = fee / 100
     buy = (price * afee) + price
     print "Youre new asking price should be %s" % buy
-    return main();
+    main()
     
 # Function to determine asking price when converting from USD to Bitcoin
 def usd2btc() :
@@ -55,8 +55,8 @@ def usd2btc() :
     fee = float (raw_input ("Enter Fee % Amount: "))
     print "You entered %s" % fee
     afee = fee / 100
-    buy = ((price * afee) - price) * -1
+    buy = price * (1 - afee)
     print "Youre new asking price should be %s" % buy
-    return main();
+    main()
 
 main()
