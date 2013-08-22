@@ -1,5 +1,5 @@
 print '''
-Asking and Bidding version 0.01
+AskBid version 0.01
 Pensando Panama Copyright 2013
 
 
@@ -23,14 +23,14 @@ def main():
     print '''Please choose your function:
     To convert from USD to BTC Press 1
     To convert from BTC to USD Press 2
-    To Quit press any key
+    To Finish press 3
     '''
-    fcts = {1 : usd2btc, 2 : btc2usd}
+    fcts = {1 : usd2btc, 2 : btc2usd, 3 : finish}
     choice = None
-    while choice not in fcts.keys():
+    while choice not in fcts.keys() :
         choice = int (raw_input("Enter Choice: "))
         fcts[choice]()
-        
+                
 # Function to determine asking price when converting from Bitcoin to USD
 def btc2usd():
     print "This function lets you know an asking price when converting Bitcoin to USD"
@@ -41,8 +41,8 @@ def btc2usd():
     fee = float (raw_input ("Enter Fee % Amount: "))
     print "You entered %s" % fee
     afee = fee / 100
-    buy = (price * afee) + price
-    print "Youre new asking price should be %s" % buy
+    usdbuy = (price * afee) + price
+    print "Youre new asking price should be %s" % usdbuy
     main()
     
 # Function to determine asking price when converting from USD to Bitcoin
@@ -55,8 +55,11 @@ def usd2btc() :
     fee = float (raw_input ("Enter Fee % Amount: "))
     print "You entered %s" % fee
     afee = fee / 100
-    buy = price * (1 - afee)
-    print "Youre new asking price should be %s" % buy
+    btcbuy = price * (1 - afee)
+    print "Youre new asking price should be %s" % btcbuy
     main()
+
+def finish() :
+    quit()
 
 main()
